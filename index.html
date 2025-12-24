@@ -1,0 +1,1577 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ulang Tahun untuk Pacar Tersayang</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Indie+Flower&family=Poppins:wght@300;400;600&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fff0f5;
+            color: #8b4513;
+            background-image: 
+                radial-gradient(#ffb6c1 2px, transparent 2px),
+                radial-gradient(#ff69b4 1px, transparent 1px);
+            background-size: 50px 50px, 30px 30px;
+            background-position: 0 0, 15px 15px;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header Styles */
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: #ff69b4;
+            margin-bottom: 10px;
+            text-shadow: 3px 3px 0 #ffe4e9;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .header h1::before,
+        .header h1::after {
+            content: "❤";
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2.5rem;
+            color: #ff1493;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .header h1::before {
+            left: -60px;
+            animation-delay: 0s;
+        }
+        
+        .header h1::after {
+            right: -60px;
+            animation-delay: 1.5s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(-50%) scale(1); }
+            50% { transform: translateY(-50%) scale(1.3); }
+        }
+        
+        .header p {
+            font-size: 1.3rem;
+            color: #d2691e;
+            font-style: italic;
+            margin-bottom: 20px;
+            font-family: 'Comic Neue', cursive;
+        }
+        
+        /* Styling untuk Surat yang Belum Dibuka */
+        .surprise-container {
+            text-align: center;
+            margin: 40px 0;
+            padding: 20px;
+            perspective: 1000px;
+        }
+        
+        .closed-letter {
+            position: relative;
+            width: 320px;
+            height: 220px;
+            margin: 0 auto;
+            cursor: pointer;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-origin: center center;
+        }
+        
+        .closed-letter:hover {
+            transform: scale(1.08) rotate(-3deg);
+        }
+        
+        .closed-letter.opened {
+            transform: rotateX(180deg) scale(1.3);
+        }
+        
+        .letter-front, .letter-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 25px;
+            box-shadow: 0 15px 35px rgba(255, 105, 180, 0.3);
+        }
+        
+        .letter-front {
+            background: linear-gradient(135deg, #fff0f5 0%, #ffe4e9 100%);
+            border: 4px solid #ffb6c1;
+            transform-style: preserve-3d;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .letter-front::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(#ff1493 3px, transparent 3px),
+                radial-gradient(#ff69b4 2px, transparent 2px);
+            background-size: 40px 40px, 20px 20px;
+            background-position: 0 0, 10px 10px;
+            opacity: 0.2;
+        }
+        
+        .letter-back {
+            background: linear-gradient(135deg, #fffaf0 0%, #fff5ee 100%);
+            transform: rotateX(180deg);
+            border: 4px solid #ff69b4;
+            display: none;
+            position: relative;
+        }
+        
+        .letter-seal {
+            position: absolute;
+            top: -25px;
+            right: -25px;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #ff1493 0%, #ff69b4 100%);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 2rem;
+            border: 5px solid white;
+            box-shadow: 0 8px 20px rgba(255, 20, 147, 0.4);
+            z-index: 10;
+            animation: pulse 2s infinite, rotate 10s linear infinite;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .letter-front h2 {
+            font-family: 'Comic Neue', cursive;
+            font-size: 2.5rem;
+            color: #ff1493;
+            margin-bottom: 10px;
+            text-align: center;
+            text-shadow: 2px 2px 0 #ffe4e9;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .letter-front p {
+            color: #d2691e;
+            font-size: 1.1rem;
+            text-align: center;
+            margin-bottom: 15px;
+            font-style: italic;
+            font-family: 'Comic Neue', cursive;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .heart-decoration {
+            position: absolute;
+            font-size: 1.5rem;
+            color: #ff69b4;
+            opacity: 0.6;
+            z-index: 1;
+        }
+        
+        .heart-1 { top: 20px; left: 20px; animation: bounce 3s infinite; }
+        .heart-2 { top: 20px; right: 20px; animation: bounce 3s infinite 0.5s; }
+        .heart-3 { bottom: 20px; left: 20px; animation: bounce 3s infinite 1s; }
+        .heart-4 { bottom: 20px; right: 20px; animation: bounce 3s infinite 1.5s; }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .letter-instructions {
+            font-size: 1rem;
+            color: #ff1493;
+            text-align: center;
+            margin-top: 25px;
+            font-family: 'Comic Neue', cursive;
+            font-weight: bold;
+            animation: wiggle 1.5s infinite;
+        }
+        
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(2deg); }
+            75% { transform: rotate(-2deg); }
+        }
+        
+        .music-notice {
+            margin-top: 25px;
+            padding: 15px;
+            background-color: rgba(255, 182, 193, 0.3);
+            border-radius: 15px;
+            border: 3px dashed #ff69b4;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .music-notice:hover {
+            background-color: rgba(255, 182, 193, 0.5);
+            transform: scale(1.05);
+        }
+        
+        .music-notice i {
+            font-size: 1.5rem;
+            color: #ff1493;
+        }
+        
+        .music-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .music-btn {
+            background: linear-gradient(135deg, #ff1493 0%, #ff69b4 100%);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(255, 20, 147, 0.3);
+        }
+        
+        .music-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(255, 20, 147, 0.4);
+        }
+        
+        .music-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        /* Letter Page */
+        .letter-page {
+            display: none;
+            background: linear-gradient(135deg, #fffaf0 0%, #fff5ee 100%);
+            border: 5px solid #ffb6c1;
+            border-radius: 20px;
+            padding: 50px;
+            margin: 50px 0;
+            box-shadow: 15px 15px 0 #ffe4e9;
+            position: relative;
+            overflow: hidden;
+            animation: slideUp 0.8s ease-out;
+        }
+        
+        .letter-page::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50,20 Q60,10 70,20 Q80,30 70,40 L50,60 L30,40 Q20,30 30,20 Q40,10 50,20' fill='%23ffb6c1' opacity='0.2'/%3E%3C/svg%3E"),
+                url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40,15 Q45,10 50,15 Q55,20 50,25 L40,35 L30,25 Q25,20 30,15 Q35,10 40,15' fill='%23ff69b4' opacity='0.15'/%3E%3C/svg%3E");
+            background-size: 100px 100px, 80px 80px;
+            background-position: 20px 20px, 60px 60px;
+            z-index: 0;
+        }
+        
+        .letter-page-corner {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background-color: #ffb6c1;
+            clip-path: polygon(0 0, 100% 0, 0 100%);
+            opacity: 0.3;
+        }
+        
+        .corner-1 { top: 0; left: 0; }
+        .corner-2 { top: 0; right: 0; transform: rotate(90deg); }
+        .corner-3 { bottom: 0; left: 0; transform: rotate(270deg); }
+        .corner-4 { bottom: 0; right: 0; transform: rotate(180deg); }
+        
+        .letter-header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .letter-header h2 {
+            font-family: 'Comic Neue', cursive;
+            font-size: 3.2rem;
+            color: #ff1493;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 0 #ffe4e9;
+            display: inline-block;
+            padding: 0 30px;
+            background: linear-gradient(135deg, #fff0f5, #ffe4e9);
+            border-radius: 20px;
+            border: 3px dotted #ff69b4;
+        }
+        
+        .letter-content {
+            font-size: 1.4rem;
+            line-height: 2;
+            font-family: 'Comic Neue', cursive;
+            min-height: 350px;
+            padding: 35px;
+            border: 4px dashed #ffb6c1;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            position: relative;
+            z-index: 2;
+            box-shadow: inset 0 0 20px rgba(255, 182, 193, 0.3);
+        }
+        
+        .letter-content::before {
+            content: "❤";
+            position: absolute;
+            font-size: 2rem;
+            color: #ff69b4;
+            opacity: 0.4;
+            top: 20px;
+            left: 20px;
+        }
+        
+        .letter-content::after {
+            content: "❤";
+            position: absolute;
+            font-size: 2rem;
+            color: #ff69b4;
+            opacity: 0.4;
+            bottom: 20px;
+            right: 20px;
+        }
+        
+        .typed-text {
+            white-space: pre-wrap;
+            overflow: hidden;
+            color: #8b4513;
+        }
+        
+        .cursor {
+            display: inline-block;
+            width: 4px;
+            background-color: #ff1493;
+            margin-left: 3px;
+            animation: blink 0.8s infinite;
+            height: 1.4em;
+            vertical-align: middle;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Floating Hearts in Letter */
+        .floating-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .floating-heart {
+            position: absolute;
+            font-size: 1.2rem;
+            color: #ff69b4;
+            opacity: 0.4;
+            animation: floatAround 20s linear infinite;
+        }
+        
+        @keyframes floatAround {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+                opacity: 0.4;
+            }
+            25% {
+                transform: translate(50px, -30px) rotate(90deg);
+                opacity: 0.6;
+            }
+            50% {
+                transform: translate(100px, 20px) rotate(180deg);
+                opacity: 0.4;
+            }
+            75% {
+                transform: translate(30px, 50px) rotate(270deg);
+                opacity: 0.6;
+            }
+            100% {
+                transform: translate(0, 0) rotate(360deg);
+                opacity: 0.4;
+            }
+        }
+        
+        /* Gallery */
+        .gallery-section {
+            margin: 70px 0;
+            padding: 40px;
+            background: linear-gradient(135deg, #ffe4e9 0%, #fff0f5 100%);
+            border-radius: 25px;
+            box-shadow: inset 0 0 30px rgba(255, 105, 180, 0.2);
+            border: 5px solid #ffb6c1;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .gallery-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30,15 Q35,10 40,15 Q45,20 40,25 L30,35 L20,25 Q15,20 20,15 Q25,10 30,15' fill='%23ff69b4' opacity='0.1'/%3E%3C/svg%3E");
+            background-size: 60px 60px;
+            opacity: 0.5;
+        }
+        
+        .section-title {
+            font-family: 'Comic Neue', cursive;
+            font-size: 2.8rem;
+            color: #ff1493;
+            text-align: center;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 0 #ffe4e9;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .photo-frame {
+            background-color: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 8px 8px 15px rgba(255, 105, 180, 0.2);
+            transform: rotate(var(--rotation));
+            transition: all 0.4s ease;
+            border: 8px solid #fff0f5;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .photo-frame::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 3px dotted #ffb6c1;
+            border-radius: 10px;
+            pointer-events: none;
+        }
+        
+        .photo-frame:hover {
+            transform: rotate(0deg) scale(1.08);
+            z-index: 10;
+            box-shadow: 15px 15px 25px rgba(255, 105, 180, 0.3);
+        }
+        
+        .photo-frame img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 3px solid #ffe4e9;
+        }
+        
+        .photo-caption {
+            text-align: center;
+            font-family: 'Comic Neue', cursive;
+            margin-top: 15px;
+            font-size: 1.3rem;
+            color: #d2691e;
+            font-weight: bold;
+        }
+        
+        /* Closing */
+        .closing-section {
+            background: linear-gradient(135deg, #fffaf0 0%, #fff5ee 100%);
+            border: 15px solid #ffe4e9;
+            border-radius: 30px;
+            padding: 60px 40px;
+            text-align: center;
+            margin: 70px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .closing-section::before, .closing-section::after {
+            content: "❤";
+            position: absolute;
+            font-size: 4rem;
+            color: #ff69b4;
+            opacity: 0.3;
+            animation: bounce 2s infinite;
+        }
+        
+        .closing-section::before {
+            top: 30px;
+            left: 30px;
+            animation-delay: 0s;
+        }
+        
+        .closing-section::after {
+            bottom: 30px;
+            right: 30px;
+            animation-delay: 1s;
+        }
+        
+        .closing-title {
+            font-family: 'Comic Neue', cursive;
+            font-size: 3.5rem;
+            color: #ff1493;
+            margin-bottom: 30px;
+            text-shadow: 3px 3px 0 #ffe4e9;
+        }
+        
+        .closing-message {
+            font-size: 1.5rem;
+            line-height: 2;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            font-family: 'Comic Neue', cursive;
+            color: #8b4513;
+        }
+        
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: #ff1493;
+            margin-top: 50px;
+            text-shadow: 2px 2px 0 #ffe4e9;
+            position: relative;
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #fff0f5, #ffe4e9);
+            border-radius: 20px;
+            border: 4px dotted #ff69b4;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            color: #d2691e;
+            font-size: 1rem;
+            border-top: 4px dashed #ffb6c1;
+            margin-top: 50px;
+            font-family: 'Comic Neue', cursive;
+        }
+        
+        .heart {
+            color: #ff1493;
+            animation: pulse 1.5s infinite;
+            display: inline-block;
+        }
+        
+        /* Popup Foto */
+        .photo-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .popup-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+            background-color: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            animation: popupFadeIn 0.5s ease;
+        }
+        
+        @keyframes popupFadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        .popup-img {
+            max-width: 100%;
+            max-height: 70vh;
+            border-radius: 10px;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .popup-caption {
+            text-align: center;
+            margin-top: 15px;
+            font-family: 'Comic Neue', cursive;
+            font-size: 1.2rem;
+            color: #5a3921;
+        }
+        
+        .popup-close {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            background-color: #d46a6a;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .popup-close:hover {
+            background-color: #c55a5a;
+            transform: scale(1.1);
+        }
+        
+        .popup-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(212, 106, 106, 0.8);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .popup-nav:hover {
+            background-color: rgba(212, 106, 106, 1);
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .popup-prev {
+            left: -25px;
+        }
+        
+        .popup-next {
+            right: -25px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 3rem;
+            }
+            
+            .header h1::before,
+            .header h1::after {
+                font-size: 2rem;
+                display: none;
+            }
+            
+            .closed-letter {
+                width: 280px;
+                height: 200px;
+            }
+            
+            .letter-front h2 {
+                font-size: 2rem;
+            }
+            
+            .letter-content {
+                font-size: 1.2rem;
+            }
+            
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            }
+            
+            .closing-title {
+                font-size: 2.8rem;
+            }
+            
+            .popup-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            
+            .popup-prev {
+                left: 10px;
+            }
+            
+            .popup-next {
+                right: 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .closed-letter {
+                width: 260px;
+                height: 180px;
+            }
+            
+            .letter-front h2 {
+                font-size: 1.8rem;
+            }
+            
+            .letter-seal {
+                width: 55px;
+                height: 55px;
+                font-size: 1.5rem;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .letter-page {
+                padding: 30px;
+            }
+            
+            .popup-content {
+                max-width: 95%;
+                padding: 15px;
+            }
+            
+            .popup-close {
+                top: -10px;
+                right: -10px;
+                width: 35px;
+                height: 35px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Audio Player -->
+    <audio id="backgroundMusic" loop>
+        <source src="audio/komang.mp3" type="audio/mpeg">
+        <source src="audio/komang.mp3" type="audio/wav">
+        Browser Anda tidak mendukung elemen audio.
+    </audio>
+    
+    <!-- Popup Foto -->
+    <div class="photo-popup" id="photoPopup">
+        <div class="popup-content">
+            <button class="popup-close" id="closePopup">
+                <i class="fas fa-times"></i>
+            </button>
+            <button class="popup-nav popup-prev" id="prevPhoto">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="popup-nav popup-next" id="nextPhoto">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <img class="popup-img" id="popupImg" src="" alt="Foto Popup">
+            <div class="popup-caption" id="popupCaption"></div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <!-- Header dengan judul -->
+        <div class="header">
+            <h1>Selamat Ulang Tahun, Cintaaku!</h1>
+            <h3>Selamat ulang tahun yang ke 17 yaa cantikk</h3>
+        </div>
+        
+        <!-- Surat yang Belum Dibuka -->
+        <div class="surprise-container">
+            <h2 style="color: #d2691e; margin-bottom: 25px; font-size: 2rem; font-family: 'Comic Neue', cursive;">
+                 Dibacaa Yaaa Sengg ☺️
+            </h2>
+            
+            <div class="closed-letter" id="closedLetter">
+                <div class="letter-front">
+                    <div class="heart-decoration heart-1">❤</div>
+                    <div class="heart-decoration heart-2">❤</div>
+                    <div class="heart-decoration heart-3">❤</div>
+                    <div class="heart-decoration heart-4">❤</div>
+                    
+                    <h2>💌</h2>
+                    <p> 🔸Klik Disini🔸</p>
+                    <div style="margin-top: 20px; font-size: 2.5rem; color: #ff1493;">
+                        
+                    </div>
+                    <div class="letter-seal">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                </div>
+                <div class="letter-back">
+                    <p style="color: #ff1493; font-size: 1.3rem; text-align: center; font-family: 'Comic Neue', cursive;">
+                        💖 Surat terbuka! 💖
+                    </p>
+                </div>
+            </div>
+            
+            <div class="letter-instructions">
+                ✨ Klik untuk membuka! ✨
+            </div>
+            
+            <!-- Kontrol Musik -->
+            <div class="music-notice" id="musicNotice">
+                <i class="fas fa-music"></i>
+                <span>Musik akan diputar saat surat dibuka</span>
+            </div>
+            
+            <div class="music-controls" id="musicControls" style="display: none;">
+                <button class="music-btn" id="playMusicBtn" title="Putar Musik">
+                    <i class="fas fa-play"></i>
+                </button>
+                <button class="music-btn" id="pauseMusicBtn" title="Jeda Musik" disabled>
+                    <i class="fas fa-pause"></i>
+                </button>
+                <button class="music-btn" id="stopMusicBtn" title="Stop Musik" disabled>
+                    <i class="fas fa-stop"></i>
+                </button>
+                <span style="color: #ff1493; font-size: 1rem; margin-left: 10px;">
+                    <i class="fas fa-volume-up"></i>
+                </span>
+            </div>
+        </div>
+        
+        <!-- Halaman Surat (akan muncul setelah surat dibuka) -->
+        <div class="letter-page" id="letterPage">
+            <div class="letter-page-corner corner-1"></div>
+            <div class="letter-page-corner corner-2"></div>
+            <div class="letter-page-corner corner-3"></div>
+            <div class="letter-page-corner corner-4"></div>
+            
+            <div class="floating-hearts" id="floatingHearts"></div>
+            
+            <div class="letter-header">
+                <h3> </h3>
+                <p style="color: #ff69b4; margin-top: 15px; font-size: 1.4rem; font-family: 'Comic Neue', cursive;">
+                
+                </p>
+            </div>
+            
+            <div class="letter-content">
+                <div id="typedText" class="typed-text"></div>
+                <span class="cursor" id="cursor">|</span>
+            </div>
+            
+            <div style="text-align: right; margin-top: 40px; font-family: 'Dancing Script', cursive; font-size: 2.5rem; color: #ff1493; position: relative; z-index: 2;">
+                 Gantengmu 😘,
+            </div>
+        </div>
+        
+        <!-- Gallery Foto -->
+        <div class="gallery-section">
+            <h2 class="section-title">📸 Gallery </h2>
+            <p style="text-align: center; color: #ff1493; max-width: 800px; margin: 0 auto; font-size: 1.3rem; font-family: 'Comic Neue', cursive;">
+                Gallery Foto Imut dan moment kita berdua 🥰!
+            </p>
+            
+            <div class="gallery">
+                <!-- Foto-foto akan ditambahkan via JavaScript -->
+            </div>
+        </div>
+        
+        <!-- Ucapan Penutup -->
+        <div class="closing-section">
+            <h2 class="closing-title">🎉 Selamat Ulang Tahun sengg! 🎂</h2>
+            
+            <div class="closing-message">
+                <p>ihiyy udan 17 tahunn aja nihh semoga tambah tinggi yaa sayangg, yakalii pendek teruss 😘</p>
+                
+                <p style="margin-top: 25px;">Kurangin begadang sama makan pedesnyaa ya sengg, biar badannya sehatt, aku gamauu kalo kamu sakitt. 😥</p>
+                
+                <p style="margin-top: 25px;">Pengenn dehh ketemuu tiap hari trus jalan" barengg kaya duluuu 😁</p>
+                
+                <p style="margin-top: 25px;"> boleh kali kissnya 😊 💕</p>
+                
+                <p style="margin-top: 25px;">Selamat ulang tahun, cintaku. Semoga hari ini dan semua hari-harimu dipenuhi kebahagiaan, cinta, dan tawa yang tak pernah habis. Selamat Merayakann 🥳</p>
+            </div>
+            
+            <div class="signature">💖 love uu seng💖</div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p>Dibuat dengan <span class="heart">❤</span> khusus untuk ulang tahun Diani Putri 💌</p>
+                <p style="margin-top: 15px; color: #ff69b4;">© 2512 - Anniversary 💕</p>
+        </div>
+    </div>
+
+    <script>
+        // Data untuk website
+        const letterText = `💖 Selamat ulang tahun yaa sengg, 💖
+
+Aku harap di umurmu yang ke 17 ini kamu menjadi seseorang yang jauh lebih baik dari sebelum sebelumnya dan semoga apa yang kamu harapkan dan apa yang kamu nantikan dapat tercapai di umurmu yang ke 17 ini ya sengg. 
+
+Terimakasih yaa sudah hadir di dalam hidupku, canda, tawa dan pertengkaran 🙃 sudah kita lewati bersama, Semenjak bersamamu hari-hariku jadi jauhh lebihh baik dari sebelumnya penuh tawa dan kebahagiaan, . 📖💕
+
+Kau adalah cahaya yang menerangi hariku, pelukan hangat di kala dingin, dan senyuman yang selalu membuatku kuat. ☀️🤗
+
+Semogaa kita bisa terus bersama yaa meski harus melewati ujian yang sulit kita harus bertahann agar di masa depan kita bisa membangun keluarga yang harmonis dan dipenuhi kebahagiaan azek. 🥰💋
+
+Maafyaa jika aku ada salah atau ada hal yang membuatmu kecewa maupun sedihh. 🤝😥
+
+Bersamamu, aku belajar arti cinta yang sesungguhnya. 💑
+
+Terima kasih telah menjadi dirimu yang luar biasa. Selamat ulang tahun, cintaku! 🎂🎉
+
+Semoga hari ini dan selamanya dipenuhi kebahagiaan, cinta, dan tawa yang tak pernah habis. 😊❤️
+
+Aku mencintaimu lebih dari kata-kata bisa ungkapkan. 💘
+
+Selamat ulang tahun, sayangku! 🥳💝`;
+
+        // Data foto
+        const photos = [
+            { src: "images/foto6.jpg", caption: "✌️😚" },
+            { src: "images/foto1.jpg", caption: "🖕😒" },
+            { src: "images/foto3.jpg", caption: "😘" },
+                        { src: "images/foto4.jpg", caption: "👩‍❤️‍👨" },
+            { src: "images/foto5.jpg", caption: "🥰" },
+            { src: "images/foto2.jpg", caption: "😊✌️" }
+            
+        ];
+
+        // Variabel global
+        let currentPhotoIndex = 0;
+        let letterOpened = false;
+        let typingInterval;
+        let musicPlaying = false;
+        
+        // Elemen DOM
+        const closedLetter = document.getElementById('closedLetter');
+        const floatingHearts = document.getElementById('floatingHearts');
+        const photoPopup = document.getElementById('photoPopup');
+        const popupImg = document.getElementById('popupImg');
+        const popupCaption = document.getElementById('popupCaption');
+        const closePopup = document.getElementById('closePopup');
+        const prevPhotoBtn = document.getElementById('prevPhoto');
+        const nextPhotoBtn = document.getElementById('nextPhoto');
+        const backgroundMusic = document.getElementById('backgroundMusic');
+        const musicNotice = document.getElementById('musicNotice');
+        const musicControls = document.getElementById('musicControls');
+        const playMusicBtn = document.getElementById('playMusicBtn');
+        const pauseMusicBtn = document.getElementById('pauseMusicBtn');
+        const stopMusicBtn = document.getElementById('stopMusicBtn');
+
+        // Fungsi untuk membuat floating hearts
+        function createFloatingHearts() {
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart';
+                heart.innerHTML = '❤';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.top = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                heart.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
+                heart.style.color = ['#ff1493', '#ff69b4', '#ffb6c1'][Math.floor(Math.random() * 3)];
+                floatingHearts.appendChild(heart);
+            }
+        }
+
+        // Fungsi untuk membuat gallery foto
+        function createGallery() {
+            const gallery = document.querySelector('.gallery');
+            
+            photos.forEach((photo, index) => {
+                const rotations = ["-3deg", "-2deg", "-1deg", "0deg", "1deg", "2deg", "3deg"];
+                const rotation = rotations[Math.floor(Math.random() * rotations.length)];
+                
+                const photoFrame = document.createElement('div');
+                photoFrame.className = 'photo-frame';
+                photoFrame.style.setProperty('--rotation', rotation);
+                photoFrame.dataset.index = index;
+                
+                const emojis = ["💕", "✨", "😊", "🌟", "💖", "🥰"];
+                const emoji = emojis[Math.floor(Math.random() * emojis.length)];
+                
+                photoFrame.innerHTML = `
+                    <div style="position: absolute; top: 5px; right: 5px; font-size: 1.5rem; z-index: 2;">${emoji}</div>
+                    <img src="${photo.src}" alt="${photo.caption}" loading="lazy">
+                    <div class="photo-caption">${photo.caption}</div>
+                `;
+                
+                photoFrame.addEventListener('click', () => openPhotoPopup(index));
+                gallery.appendChild(photoFrame);
+            });
+        }
+
+        // Fungsi untuk animasi mengetik surat
+        function typeLetter() {
+            const typedText = document.getElementById('typedText');
+            const cursor = document.getElementById('cursor');
+            
+            typedText.innerHTML = '';
+            cursor.style.display = 'inline-block';
+            
+            let i = 0;
+            const speed = 35;
+            
+            function typeWriter() {
+                if (i < letterText.length) {
+                    typedText.innerHTML += letterText.charAt(i);
+                    i++;
+                    
+                    cursor.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    
+                    if (Math.random() > 0.95) {
+                        addTypingDecoration();
+                    }
+                    
+                    typingInterval = setTimeout(typeWriter, speed);
+                } else {
+                    cursor.style.animation = 'none';
+                    cursor.style.opacity = '0';
+                    createLetterConfetti();
+                }
+            }
+            
+            setTimeout(typeWriter, 500);
+        }
+
+        // Fungsi untuk menambahkan dekorasi saat mengetik
+        function addTypingDecoration() {
+            const decorations = ['💕', '✨', '💖', '🌟', '🥰', '😊'];
+            const decoration = decorations[Math.floor(Math.random() * decorations.length)];
+            
+            const deco = document.createElement('span');
+            deco.innerHTML = decoration;
+            deco.style.fontSize = '1.5rem';
+            deco.style.position = 'relative';
+            deco.style.animation = 'bounce 1s';
+            deco.style.display = 'inline-block';
+            
+            const cursor = document.getElementById('cursor');
+            cursor.parentNode.insertBefore(deco, cursor);
+            
+            setTimeout(() => {
+                deco.remove();
+            }, 1000);
+        }
+
+        // Fungsi untuk membuat confetti di surat
+        function createLetterConfetti() {
+            const letterContent = document.querySelector('.letter-content');
+            
+            for (let i = 0; i < 15; i++) {
+                const confetti = document.createElement('div');
+                const emojis = ['💕', '✨', '💖', '🌟', '🥰', '💝', '🎉', '🎂'];
+                const emoji = emojis[Math.floor(Math.random() * emojis.length)];
+                
+                confetti.innerHTML = emoji;
+                confetti.style.position = 'absolute';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.top = Math.random() * 100 + '%';
+                confetti.style.fontSize = (Math.random() * 2 + 1) + 'rem';
+                confetti.style.opacity = '0.8';
+                confetti.style.zIndex = '5';
+                confetti.style.pointerEvents = 'none';
+                confetti.style.animation = `bounce 2s ease-in-out ${Math.random() * 2}s infinite`;
+                
+                letterContent.appendChild(confetti);
+            }
+        }
+
+        // Fungsi untuk mengatur musik
+        function setupMusicControls() {
+            playMusicBtn.addEventListener('click', function() {
+                backgroundMusic.play();
+                musicPlaying = true;
+                updateMusicButtons();
+                createMusicVisualization();
+            });
+            
+            pauseMusicBtn.addEventListener('click', function() {
+                backgroundMusic.pause();
+                musicPlaying = false;
+                updateMusicButtons();
+            });
+            
+            stopMusicBtn.addEventListener('click', function() {
+                backgroundMusic.pause();
+                backgroundMusic.currentTime = 0;
+                musicPlaying = false;
+                updateMusicButtons();
+            });
+            
+            backgroundMusic.addEventListener('ended', function() {
+                musicPlaying = false;
+                updateMusicButtons();
+            });
+            
+            musicNotice.addEventListener('click', function() {
+                backgroundMusic.play();
+                musicPlaying = true;
+                musicControls.style.display = 'flex';
+                this.style.display = 'none';
+                updateMusicButtons();
+                createMusicVisualization();
+            });
+        }
+        
+        // Fungsi untuk update tampilan tombol musik
+        function updateMusicButtons() {
+            playMusicBtn.disabled = musicPlaying;
+            pauseMusicBtn.disabled = !musicPlaying;
+            stopMusicBtn.disabled = !musicPlaying;
+        }
+
+        // Fungsi untuk visualisasi musik sederhana
+        function createMusicVisualization() {
+            const heartsContainer = document.createElement('div');
+            heartsContainer.id = 'musicVisualization';
+            heartsContainer.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                z-index: 1000;
+                pointer-events: none;
+                display: flex;
+                align-items: center;
+                gap: 5px;
+            `;
+            document.body.appendChild(heartsContainer);
+            
+            function createMusicHeart() {
+                if (!musicPlaying) return;
+                
+                const heart = document.createElement('div');
+                heart.innerHTML = '💖';
+                heart.style.cssText = `
+                    font-size: ${Math.random() * 20 + 15}px;
+                    opacity: ${Math.random() * 0.7 + 0.3};
+                    transform: translateY(0);
+                    transition: transform 1s ease-out, opacity 1s ease-out;
+                `;
+                heartsContainer.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.style.transform = 'translateY(-30px)';
+                    heart.style.opacity = '0';
+                    
+                    setTimeout(() => {
+                        if (heart.parentNode) {
+                            heart.remove();
+                        }
+                    }, 1000);
+                }, 10);
+            }
+            
+            const musicInterval = setInterval(createMusicHeart, 500);
+            
+            backgroundMusic.addEventListener('pause', () => {
+                clearInterval(musicInterval);
+                if (heartsContainer.parentNode) {
+                    setTimeout(() => {
+                        heartsContainer.remove();
+                    }, 1000);
+                }
+            });
+            
+            backgroundMusic.addEventListener('ended', () => {
+                clearInterval(musicInterval);
+                if (heartsContainer.parentNode) {
+                    setTimeout(() => {
+                        heartsContainer.remove();
+                    }, 1000);
+                }
+            });
+        }
+
+        // Fungsi untuk membuka surat
+        function setupLetterOpening() {
+            closedLetter.addEventListener('click', function() {
+                if (letterOpened) return;
+                
+                letterOpened = true;
+                
+                // Efek klik
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1.08) rotate(-3deg)';
+                }, 100);
+                
+                // Animasi membuka
+                setTimeout(() => {
+                    this.classList.add('opened');
+                }, 200);
+                
+                // Tampilkan bagian belakang
+                setTimeout(() => {
+                    const letterBack = this.querySelector('.letter-back');
+                    letterBack.style.display = 'flex';
+                }, 600);
+                
+                // Putar musik saat surat terbuka
+                setTimeout(() => {
+                    backgroundMusic.play().then(() => {
+                        musicPlaying = true;
+                        musicControls.style.display = 'flex';
+                        musicNotice.style.display = 'none';
+                        updateMusicButtons();
+                        createMusicVisualization();
+                    }).catch(error => {
+                        console.log("Autoplay diblokir. Pengguna harus berinteraksi terlebih dahulu.");
+                        musicNotice.style.display = 'flex';
+                    });
+                }, 800);
+                
+                // Tampilkan halaman surat
+                setTimeout(() => {
+                    const letterPage = document.getElementById('letterPage');
+                    letterPage.style.display = 'block';
+                    
+                    createFloatingHearts();
+                    
+                    setTimeout(() => {
+                        letterPage.scrollIntoView({ behavior: 'smooth' });
+                        typeLetter();
+                    }, 300);
+                    
+                    const instructions = document.querySelector('.letter-instructions');
+                    instructions.style.opacity = '0';
+                    instructions.style.transform = 'scale(0.8)';
+                    instructions.style.transition = 'all 0.5s ease';
+                }, 1500);
+            });
+        }
+
+        // Fungsi untuk popup foto
+        function setupPhotoPopup() {
+            closePopup.addEventListener('click', closePhotoPopup);
+            prevPhotoBtn.addEventListener('click', showPrevPhoto);
+            nextPhotoBtn.addEventListener('click', showNextPhoto);
+            
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closePhotoPopup();
+                } else if (e.key === 'ArrowLeft') {
+                    showPrevPhoto();
+                } else if (e.key === 'ArrowRight') {
+                    showNextPhoto();
+                }
+            });
+            
+            photoPopup.addEventListener('click', (e) => {
+                if (e.target === photoPopup) {
+                    closePhotoPopup();
+                }
+            });
+        }
+        
+        // Buka popup foto
+        function openPhotoPopup(index) {
+            currentPhotoIndex = index;
+            updatePopupPhoto();
+            photoPopup.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Tutup popup foto
+        function closePhotoPopup() {
+            photoPopup.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Foto sebelumnya
+        function showPrevPhoto() {
+            currentPhotoIndex = (currentPhotoIndex - 1 + photos.length) % photos.length;
+            updatePopupPhoto();
+        }
+        
+        // Foto berikutnya
+        function showNextPhoto() {
+            currentPhotoIndex = (currentPhotoIndex + 1) % photos.length;
+            updatePopupPhoto();
+        }
+        
+        // Update foto di popup
+        function updatePopupPhoto() {
+            const photo = photos[currentPhotoIndex];
+            popupImg.src = photo.src;
+            popupImg.alt = photo.caption;
+            popupCaption.textContent = photo.caption;
+            
+            // Fallback jika gambar error
+            popupImg.onerror = function() {
+                this.src = `https://placehold.co/800x600/ffb6c1/white?text=Kenangan+${currentPhotoIndex+1}`;
+                this.onerror = null;
+            };
+        }
+
+        // Inisialisasi saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', function() {
+            createGallery();
+            setupLetterOpening();
+            setupPhotoPopup();
+            setupMusicControls();
+            
+            // Preload musik untuk menghindari lag
+            backgroundMusic.load();
+            
+            // Efek hover untuk foto
+            document.querySelectorAll('.photo-frame').forEach(frame => {
+                frame.addEventListener('mouseenter', function() {
+                    this.style.zIndex = '100';
+                });
+                
+                frame.addEventListener('mouseleave', function() {
+                    this.style.zIndex = '1';
+                });
+            });
+            
+            // Konfeti saat halaman dimuat
+            setTimeout(() => {
+                createSimpleConfetti();
+            }, 1000);
+            
+            // Efek hover untuk surat
+            closedLetter.addEventListener('mouseenter', function() {
+                if (!letterOpened) {
+                    this.style.transform = 'scale(1.08) rotate(-3deg)';
+                }
+            });
+            
+            closedLetter.addEventListener('mouseleave', function() {
+                if (!letterOpened) {
+                    this.style.transform = 'scale(1) rotate(0deg)';
+                }
+            });
+            
+            // Pesan selamat datang
+            setTimeout(() => {
+                showWelcomeMessage();
+            }, 800);
+        });
+
+        // Fungsi untuk efek konfeti sederhana
+        function createSimpleConfetti() {
+            const confettiCount = 60;
+            const container = document.querySelector('.container');
+            const emojis = ['💕', '✨', '💖', '🌟', '🥰', '💝', '🎉', '🎂', '😊', '💑'];
+            
+            for (let i = 0; i < confettiCount; i++) {
+                const confetti = document.createElement('div');
+                confetti.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+                confetti.style.position = 'fixed';
+                confetti.style.color = ['#ff1493', '#ff69b4', '#ffb6c1'][Math.floor(Math.random() * 3)];
+                confetti.style.fontSize = Math.random() * 25 + 15 + 'px';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = '-50px';
+                confetti.style.opacity = '0';
+                confetti.style.zIndex = '9999';
+                confetti.style.pointerEvents = 'none';
+                confetti.style.textShadow = '2px 2px 0 #ffe4e9';
+                
+                container.appendChild(confetti);
+                
+                const animation = confetti.animate([
+                    { transform: 'translateY(0) rotate(0deg)', opacity: 0 },
+                    { transform: `translateY(${window.innerHeight + 100}px) rotate(${Math.random() * 720}deg)`, opacity: 0.8 }
+                ], {
+                    duration: Math.random() * 4000 + 2000,
+                    delay: Math.random() * 1000
+                });
+                
+                animation.onfinish = () => confetti.remove();
+            }
+        }
+
+        // Fungsi untuk menampilkan pesan selamat datang
+        function showWelcomeMessage() {
+            const welcomeDiv = document.createElement('div');
+            welcomeDiv.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) scale(0.8);
+                background: linear-gradient(135deg, #ffe4e9 0%, #fff0f5 100%);
+                padding: 30px;
+                border-radius: 25px;
+                border: 5px solid #ff69b4;
+                z-index: 1500;
+                text-align: center;
+                box-shadow: 0 15px 40px rgba(255, 105, 180, 0.4);
+                max-width: 450px;
+                width: 90%;
+                opacity: 0;
+                transition: all 0.6s ease;
+                font-family: 'Comic Neue', cursive;
+            `;
+            
+            welcomeDiv.innerHTML = `
+                <h3 style="color: #ff1493; margin-bottom: 20px; font-size: 1.3rem; text-shadow: 2px 2px 0 #ffe4e9;">
+                    🎉 Habede sayangg 🎉
+                </h3>
+                <p style="color: #8b4513; margin-bottom: 20px; line-height: 1.7; font-size: 1.3rem;">
+                </p>
+                <p style="color: #ff69b4; margin-bottom: 25px; font-style: italic; font-size: 1.2rem;">
+                     <strong></strong>
+                </p>
+                <p style="color: #d2691e; margin-bottom: 20px; font-size: 1rem;">
+                </p>
+                <button id="closeWelcomeBtn" style="
+                    background: linear-gradient(135deg, #ff1493 0%, #ff69b4 100%);
+                    color: white;
+                    border: none;
+                    padding: 15px 40px;
+                    border-radius: 50px;
+                    cursor: pointer;
+                    font-family: 'Comic Neue', cursive;
+                    font-weight: bold;
+                    font-size: 1.3rem;
+                    transition: all 0.3s ease;
+                    box-shadow: 0 5px 20px rgba(255, 20, 147, 0.4);
+                ">
+                    <i class="fas fa-heart"></i> klik disini
+                </button>
+            `;
+            
+            document.body.appendChild(welcomeDiv);
+            
+            setTimeout(() => {
+                welcomeDiv.style.opacity = '1';
+                welcomeDiv.style.transform = 'translate(-50%, -50%) scale(1)';
+            }, 100);
+            
+            document.getElementById('closeWelcomeBtn').addEventListener('click', function() {
+                welcomeDiv.style.opacity = '0';
+                welcomeDiv.style.transform = 'translate(-50%, -50%) scale(0.8)';
+                
+                createSimpleConfetti();
+                
+                setTimeout(() => {
+                    welcomeDiv.remove();
+                }, 600);
+            });
+            
+            setTimeout(() => {
+                if (welcomeDiv.parentNode) {
+                    welcomeDiv.style.opacity = '0';
+                    welcomeDiv.style.transform = 'translate(-50%, -50%) scale(0.8)';
+                    
+                    setTimeout(() => {
+                        if (welcomeDiv.parentNode) {
+                            welcomeDiv.remove();
+                        }
+                    }, 600);
+                }
+            }, 15000);
+        }
+
+        // Cleanup saat halaman ditutup
+        window.addEventListener('beforeunload', function() {
+            if (typingInterval) {
+                clearTimeout(typingInterval);
+            }
+            if (backgroundMusic) {
+                backgroundMusic.pause();
+            }
+        });
+
+        // Fallback untuk gambar yang gagal dimuat
+        window.addEventListener('error', function(e) {
+            if (e.target.tagName === 'IMG') {
+                e.target.src = 'https://placehold.co/600x400/ffb6c1/white?text=Kenangan+Spesial';
+                e.target.style.border = '3px dashed #ff69b4';
+            }
+        }, true);
+    </script>
+</body>
+</html>
